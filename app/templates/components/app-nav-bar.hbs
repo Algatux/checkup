@@ -7,17 +7,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            {{#link-to 'index' class="navbar-brand"}}Checkup{{/link-to}}
+            {{#link-to 'index' class="navbar-brand"}}
+                Checkup
+            {{/link-to}}
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="">Home</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Contacts</a></li>
-
-                {{#if session.isAuthenticated}}
-                  <li><a href="#">Secured Area</a></li>
-                {{/if}}
+                <li>{{#link-to "index"}}Home{{/link-to}}</li>
 
                 <!--{#<li class="dropdown">#}-->
                 <!--{#<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>#}-->
@@ -36,15 +32,13 @@
             <ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
               {{#if session.isAuthenticated}}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                      {{ tokenData.data.uidentifier }} <span class="caret"></span>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      {{fa-icon "user"}}
+                      {{tokenData.data.uidentifier}} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href>{{ tokenData.data.uidentifier }}</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">{{ user.email }}</li>
-                        <li><a href="#">Profile</a></li>
+                        <li class="dropdown-header">{{user.email}}</li>
+                        <li>{{#link-to "user-profile"}}Profile{{/link-to}}</li>
                         <li role="separator" class="divider"></li>
                         <li><a {{action 'invalidateSession'}} href>Logout</a></li>
                     </ul>
